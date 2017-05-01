@@ -7,10 +7,10 @@ import tweepy
 api_handle = None
 
 def get_authorization():
-    API_KEY = os.getenv('API_KEY', None)
-    API_SECRET = os.getenv('API_SECRET', None)
+    TWITTER_API_KEY = os.getenv('TWITTER_API_KEY', None)
+    TWITTER_API_SECRET = os.getenv('TWITTER_API_SECRET', None)
 
-    auth = tweepy.AppAuthHandler(API_KEY, API_SECRET)
+    auth = tweepy.AppAuthHandler(TWITTER_API_KEY, TWITTER_API_SECRET)
     return auth
 
 def get_api():
@@ -19,7 +19,7 @@ def get_api():
     if api_handle:
         return api_handle
 
-    print_safe("Connecting to twitter.")
+    print("Connecting to twitter.")
     auth = get_authorization()
     api = tweepy.API(auth, wait_on_rate_limit=True,
                     wait_on_rate_limit_notify=True)
@@ -41,17 +41,18 @@ def get_user_likes(username):
     api = get_api()
     return [tweet.text for tweet in api.favorites(username)]
 
-def print_user(user):
-    print_safe("Id : {}".format(user.id_str))
-    print_safe("User : {} @{}".format(user.name, user.screen_name))
-    print_safe("Tweets: {}".format(user.statuses_count))
-    print_safe("Follows: {}".format(user.friends_count))
-    print_safe("Followers: {}".format(user.followers_count))
-    # print_safe("Location : {}".format(user.location or 'No Location specified'))
-    print_safe("Joined at : {}".format(user.created_at))
-
-def print_safe(text):
-    print(text.encode('utf-8'))
+def get_user_info(username):
+    user = get_user(username)
+    return {
+        "id": user.id_str,
+        "username": user.name,
+        "screen_name": user.screen_name,
+        "tweets_count": user.statuses_count,
+        "following_count": user.friends_count,
+        "followers_count": user.followers_count,
+        "joined_at": user.created_at,
+        "location": user.location
+    }
 
 def main():
     pass
