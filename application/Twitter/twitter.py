@@ -37,9 +37,25 @@ def get_user_timeline(username):
     api = get_api()
     return [tweet.text for tweet in api.user_timeline(username)]
 
-def get_user_likes(username):
+def get_user_likes(username, total = 1000):
     api = get_api()
-    return [tweet.text for tweet in api.favorites(username)]
+    all_tweets = []
+
+    new_tweets = api.favorites(screen_name = username, count = 200)
+    all_tweets.extend(new_tweets)
+    oldest = all_tweets[-1].id - 1
+
+    while len(all_tweets) < total:
+        print 'getting tweets'
+        print len(all_tweets)
+        new_tweets = api.favorites(screen_name = username, count = 200, max_id = oldest)
+        all_tweets.extend(new_tweets)
+        oldest = all_tweets[-1].id - 1
+
+        if len(new_tweets) == 0:
+            break
+
+    return [tweet.text.encode("utf-8") for tweet in all_tweets]
 
 def get_user_info(username):
     user = get_user(username)

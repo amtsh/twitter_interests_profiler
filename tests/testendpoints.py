@@ -1,11 +1,10 @@
 import json
-import nose
 from nose.tools import *
 
 from tests import test_app
 
 def test_entities_route():
-    response = test_app.get('/')
+    response = test_app.get('/api')
     # check headers
     check_content_type(response.headers)
     # check status code

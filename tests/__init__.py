@@ -1,3 +1,6 @@
-from application.server import app
+import nose
+from nose.tools import *
 
-test_app = app.test_client()
+from application.server import flask_app
+
+test_app = flask_app.test_client()

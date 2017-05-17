@@ -6,6 +6,7 @@ def get_document(text_content):
     return document
 
 def get_entities(text_content):
+    print "connecting to google ..."
     document = get_document(text_content)
     entity_response = document.analyze_entities()
     response = []
