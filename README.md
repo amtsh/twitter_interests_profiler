@@ -28,7 +28,7 @@ Run tests
 ./testrunner.sh
 ```
 
-To Do
+## To Do
 - Create a webpage to display the interests for a given twitter-username
 - Deploy it to Heroku/AWS/Google Cloud
 - Basic analytics to show topic weight based on occurence
