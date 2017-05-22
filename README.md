@@ -12,9 +12,10 @@ Run webserver
 ```
 python application/server.py
 ```
-Get Interests
+
+Open your browser to 
 ```
-Open your browser to http://127.0.0.1:8080//api/interests/<your-twitter_username>
+http://127.0.0.1:8080//api/interests/<your-twitter_username>
 ```
 ## How to run tests
 
