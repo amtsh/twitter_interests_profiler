@@ -12,6 +12,11 @@ Run webserver
 ```
 python application/server.py
 ```
+
+Open your browser to 
+```
+http://127.0.0.1:8080/api/interests/<your-twitter_username>
+```
 ## How to run tests
 
 Make sure you have 'nosetests' installed. If not use following command:
@@ -23,3 +28,9 @@ Run tests
 ```
 ./testrunner.sh
 ```
+
+## To Do
+- Create a webpage to display the interests for a given twitter-username
+- Basic analytics to show topic weight based on occurence
+- Recommend content from Youtube, Medium based on topics.
+- Deploy it to Heroku/AWS/Google Cloud
